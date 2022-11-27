@@ -11,6 +11,12 @@ exports.createTodo = async (req, res) =>{
             throw new Error('Title is required.');
         }
         const todo = await Todo.create({title})
+        if(!todo){
+            res.status(401).json({
+                success:false,
+                error: "Something went wrong"
+            })
+        }
         res.status(201).json({
             success: true,
             message: "Todo Created Successfully",
