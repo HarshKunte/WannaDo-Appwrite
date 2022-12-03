@@ -6,9 +6,9 @@ import {FaPlus} from 'react-icons/fa';
 import Modal from '../components/Modal';
 function Home() {
     return ( 
-        <div className='px-32 py-6'>
+        <div className='px-4 md:px-10 lg:px-28 xl:px-32 py-6'>
             <Navbar/>
-            <div className='px-16 py-8'>
+            <div className='px-6 py-8 xl:px-16 xl:py-8'>
                 <div className='w-full mb-12'>
                     <label htmlFor="my-modal-3" className="btn btn-sm text-base-content  float-right">
                         <FaPlus className='mr-2'/>
