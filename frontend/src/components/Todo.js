@@ -33,13 +33,13 @@ function Todo() {
     console.log("checked");
   };
   return (
-    <div className="p-20">
+    <div className="p-8 md:p-20 xl:p-20">
       <div className="">
         <input
           ref={inputReference}
           type="text"
           defaultValue="Todo title"
-          className="block w-fit font-bold outline-none text-5xl text-primary px-2 bg-inherit focus:bg-base-300"
+          className="block max-w-[360px] md:max-w-screen-sm font-bold outline-none text-4xl md:text-5xl text-primary px-2 bg-inherit focus:bg-base-300"
           disabled={disabled}
           onBlur={submitTitle}
         />

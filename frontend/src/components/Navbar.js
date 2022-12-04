@@ -4,7 +4,7 @@ import {BiArrowBack} from 'react-icons/bi';
 import {GiHamburgerMenu} from 'react-icons/gi';
 function Navbar({back}) {
     return ( 
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 px-4 md:px-inherit">
         
             <div className="flex-1">
             {!back?(
@@ -16,7 +16,7 @@ function Navbar({back}) {
             </>
             ):(
                 <>
-                <label htmlFor='my-drawer-2' className='lg:hidden'><GiHamburgerMenu/></label>
+                <label htmlFor='my-drawer-2' className='lg:hidden drawer-button'><GiHamburgerMenu className='w-5 h-5'/></label>
                 <a href='/' className='hidden lg:flex items-center normal-case text-base'><BiArrowBack className='mr-2'/> Home</a>
                 </>
               )
