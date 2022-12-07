@@ -18,6 +18,7 @@ function App() {
     <div className="App font-['Poppins'] text-accent">
       <Routes>
           <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/search" element={<Home/>}/>
           <Route exact path="/todo/:id" element={<ViewTodo/>}/>
           
          
