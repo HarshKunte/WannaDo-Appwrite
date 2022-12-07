@@ -2,7 +2,12 @@ import React from 'react';
 import {FaRunning} from 'react-icons/fa'
 import {BiArrowBack} from 'react-icons/bi';
 import {GiHamburgerMenu} from 'react-icons/gi';
+import { useNavigate } from 'react-router-dom';
 function Navbar({back}) {
+  const navigate = useNavigate()
+  const goBack = () =>{
+    navigate(-1)
+  }
     return ( 
     <div className="navbar bg-base-100 px-4 md:px-inherit">
         
@@ -17,7 +22,7 @@ function Navbar({back}) {
             ):(
                 <>
                 <label htmlFor='my-drawer-2' className='lg:hidden drawer-button'><GiHamburgerMenu className='w-5 h-5'/></label>
-                <a href='/' className='hidden lg:flex items-center normal-case text-base'><BiArrowBack className='mr-2'/> Home</a>
+                <a onClick={goBack} className='cursor-pointer hidden lg:flex items-center normal-case text-base'><BiArrowBack className='mr-2'/> Back</a>
                 </>
               )
             }

@@ -4,12 +4,12 @@ import {MdModeEdit} from "react-icons/md"
 import {TiDelete} from 'react-icons/ti';
 import {IoSend} from 'react-icons/io5';
 import {BsTrash} from 'react-icons/bs';
-import {BsCheckAll} from 'react-icons/bs';
 import TodosContext from "../TodosContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-function Todo({todo}) {
+function Todo({todo, setTodo}) {
 
   const navigate = useNavigate();
   const {todos, updateTodos} = useContext(TodosContext);
@@ -48,9 +48,14 @@ function Todo({todo}) {
         toast.success("Todo updated")
       }
       const updatedTodo = res.data.todo 
+      console.log("updated",updatedTodo);
       const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
-      newTodos.push(updatedTodo)                         
+      console.log(newTodos);
+      newTodos.push(updatedTodo)
+      console.log(newTodos);
+
       updateTodos(newTodos)
+      console.log("todos = ",todos);
       navigate(`/todo/${todo._id}`)
     })
     .catch(err =>{
@@ -91,6 +96,7 @@ function Todo({todo}) {
         toast.success("Task added!")
       }
       const updatedTodo = res.data.todo 
+      setTodo(updatedTodo)
       const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
@@ -110,6 +116,7 @@ function Todo({todo}) {
         toast.success("Task deleted!")
       }
       const updatedTodo = res.data.todo 
+      setTodo(updatedTodo)
       const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
@@ -130,10 +137,11 @@ function Todo({todo}) {
     
     await axios.post(`/api/updateTask/${todo._id}`,{task})
     .then((res) =>{
-      if(res.data.success && task.isCompleted){
+      if(res.data.success && task.isCompleted==true){
         toast.success("Well done, you did it!")
       }
-      const updatedTodo = res.data.todo 
+      const updatedTodo = res.data.todo
+      setTodo(updatedTodo)
       const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
@@ -157,7 +165,8 @@ function Todo({todo}) {
       if(res.data.success){
         toast.success("Task updated")
       }
-      const updatedTodo = res.data.todo 
+      const updatedTodo = res.data.todo
+      setTodo(updatedTodo)
       const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
@@ -172,12 +181,13 @@ function Todo({todo}) {
   return (
     <div className="p-8 md:p-20 xl:p-20">
       <div className="">
+        <p className="text-xs ml-2">Created on <span className="text-error">{dayjs(todo.createdAt).format('DD MMM YY')}</span></p>
         <input
           ref={inputReference}
           type="text"
           defaultValue={todo.title}
           onChange={(e)=>setTodoTitle(e.target.value)}
-          className="block max-w-[360px] md:max-w-screen-sm font-bold outline-none text-4xl md:text-5xl text-primary px-2 bg-inherit focus:bg-base-300"
+          className="block max-w-[360px] md:max-w-screen-sm font-bold outline-none text-4xl md:text-5xl xl:text-6xl text-primary px-2 bg-inherit focus:bg-base-300"
           disabled={disabled}
           onBlur={editTitle}
         />

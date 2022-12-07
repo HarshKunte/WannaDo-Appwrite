@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import {IoSend} from 'react-icons/io5';
 import { useNavigate } from "react-router-dom";
 import TodosContext from "../TodosContext";
@@ -18,7 +19,7 @@ function Modal() {
     .then((res)=>{
       console.log(res);
       const todo = res.data.todo;
-
+      toast.success("List created")
       //update context
       createTodo(todo);
 
@@ -26,6 +27,12 @@ function Modal() {
       modalRef.current.checked = false
 
       navigate(`/todo/${todo._id}`)
+    })
+    .catch(err =>{
+      console.log(err);
+      toast.error("Creating new list failed!")
+      //close modal
+      modalRef.current.checked = false
     })
     //close modal
   }
@@ -46,6 +53,7 @@ function Modal() {
             <form onSubmit={submitTodo} className="input-group">
               <input
                 type="text"
+                maxLength={25}
                 placeholder="New list"
                 className="input input-bordered"
                 onChange={(e)=>setTitle(e.target.value)}

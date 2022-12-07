@@ -11,11 +11,17 @@ function Home() {
     const {todos, updateTodos} = useContext(TodosContext);
 
     const getTodosFromDb = async()=>{
+
+    //checking if context is empty to prevent unnecessary DB calls
+    if(!todos || todos.length==0){
        const {data} =  await axios.get('/api/getTodos')
-       const {todos} = data
-       
-       //update context 
-       updateTodos(todos)
+
+       const newTodos = data.todos
+       //update context
+       updateTodos(newTodos)
+        }
+      
+        
     }
 
     

@@ -5,12 +5,13 @@ const todoSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        maxlength: [25, "Name must be 25 Ch Long"],
+        maxlength: [25, "Name must not be more than 25 chars"],
     },  
     tasks: [{
         title:{
             type: String,
-            trim:true
+            trim:true,
+            maxlength: [25, "Name must not be more than 25 chars"],
         },
         isCompleted: {
             type: Boolean,

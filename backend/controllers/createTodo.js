@@ -12,7 +12,7 @@ exports.createTodo = async (req, res) =>{
         }
         const todo = await Todo.create({title})
         if(!todo){
-            res.status(401).json({
+            return res.status(401).json({
                 success:false,
                 error: "Something went wrong"
             })
@@ -23,7 +23,7 @@ exports.createTodo = async (req, res) =>{
             todo,
           });
     } catch (error) {
-        res.status(401).json({
+        return res.status(401).json({
             success:false,
             error
         })

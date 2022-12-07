@@ -2,13 +2,14 @@ const Todo = require('../model/todoModel')
 
 exports.getTodos = async (req, res) =>{
     try {
-        const todos = await Todo.find();
+        const todos = await Todo.find().sort({updatedAt:-1});
         if(!todos){
             res.status(401).json({
                 success: false,
                 error: "Something went wrong!!",
             })
         }
+        
         res.status(200).json({
             success: true,
             todos,

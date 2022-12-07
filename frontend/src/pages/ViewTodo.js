@@ -14,6 +14,7 @@ function ViewTodo() {
 
   const { todos, updateTodos } = useContext(TodosContext);
   const [todo, setTodo] = useState({});
+  console.log(todos);
 
   const getTodo = async () => {
     try {
@@ -56,7 +57,7 @@ function ViewTodo() {
       <div className="drawer-content flex flex-col">
         {/* Page content here */}
         <Navbar back />
-        <Todo todo={todo} />
+        <Todo todo={todo} setTodo={setTodo}/>
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>

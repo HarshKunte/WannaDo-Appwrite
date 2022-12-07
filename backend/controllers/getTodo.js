@@ -9,7 +9,7 @@ exports.getTodo = async (req, res) =>{
                 error: "Inavlid format of todoId"
             })
         }
-        const todo = await Todo.findById(todoId);
+        const todo = await Todo.findById(todoId).sort({updatedAt:-1});
         if(!todo){
             return res.status(401).json({
                 success: false,
