@@ -9,6 +9,7 @@ function SearchBar({searchTodos}) {
     }
     return ( 
         <div class="form-control px-6 xl:px-16 mt-8 float-left md:float-right">
+
   <div class="input-group input-group-sm">
     <input onChange={(e) => {
         setSearchText(e.target.value)}} type="text" value={searchText} placeholder="Search…" class="input input-bordered input-sm" />
