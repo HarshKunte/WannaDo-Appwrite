@@ -34,7 +34,7 @@ function Card({todo}) {
       <div className="card-body p-4 sm:p-6 overflow-hidden flex-col items-center justify-between md:justify-start md:items-start">
         <FaListUl className="md:hidden w-8 h-8 text-neutral-content" />
         
-        <p className="text-sm lg:text-2xl font-bold  text-primary font-mono">
+        <p className="text-sm lg:text-2xl font-bold text-center  text-primary font-mono">
           {todo?.title}
         </p>
         
@@ -59,7 +59,7 @@ function Card({todo}) {
         </h5>
         <h5  className="hidden md:flex items-center text-xs xl:text-sm text-error">
          {completedTasks} completed <BsCheckAll className="w-5 h-5 ml-1"/></h5> 
-        <div className="card-actions justify-end mt-2 text-xs text-gray-400">
+        <div className="hidden md:block card-actions justify-end mt-2 text-xs text-gray-400">
           updated {todo.relativeDate}
         </div>
       </div>
