@@ -16,16 +16,16 @@ router.get('/',(req,res)=>{
 })
 
 //get Todos
-router.get('/getTodos', getTodos)
+router.get('/getTodos/:userId', getTodos)
 
 //search Todos
-router.get('/searchTodos', searchTodos)
+router.get('/searchTodos/:userId', searchTodos)
 
 //get single Todo
 router.get('/getTodo/:todoId', getTodo)
 
 //create todo
-router.post('/createTodo', createTodo)
+router.post('/createTodo/:userId', createTodo)
 
 //create task and add it todo
 router.post('/createTask/:todoId', createTask)

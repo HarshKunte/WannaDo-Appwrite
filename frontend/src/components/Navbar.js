@@ -9,7 +9,7 @@ import account from '../config/appwrite'
 import { toast } from 'react-hot-toast';
 function Navbar({back}) {
 
-  const {user, updateUser} = useContext(TodosContext);
+  const {user, updateUser, updateTodos} = useContext(TodosContext);
 
   const navigate = useNavigate()
   const goBack = () =>{
@@ -22,9 +22,13 @@ function Navbar({back}) {
     promise.then(function (response) {
         //SUCCESS, update user in context
         updateUser()
+
+        //set todos to empty
+        updateTodos([])
+
+        navigate('/')
     }, function (error) {
       toast.error("Logout failed")
-        console.log(error); // Failure
     });
   }
     return ( 

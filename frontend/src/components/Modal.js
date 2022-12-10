@@ -5,7 +5,7 @@ import {IoSend} from 'react-icons/io5';
 import { useNavigate } from "react-router-dom";
 import TodosContext from "../TodosContext";
 function Modal() {
-  const {createTodo} = useContext(TodosContext);
+  const {createTodo, user} = useContext(TodosContext);
   const navigate = useNavigate();
 
   //using this to close modal after creating todo
@@ -15,7 +15,7 @@ function Modal() {
   const submitTodo = async(e) =>{
     e.preventDefault();
     console.log(title);
-    await axios.post('/api/createTodo',{title})
+    await axios.post(`/api/createTodo/${user.id}`,{title})
     .then((res)=>{
       console.log(res);
       const todo = res.data.todo;

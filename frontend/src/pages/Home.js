@@ -5,6 +5,7 @@ import {FaPlus} from 'react-icons/fa';
 import {IoMdAddCircle} from 'react-icons/io';
 import { IoCloseSharp} from 'react-icons/io5';
 import TodosContext from '../TodosContext';
+import EmptyList from '../images/empty.svg'
 import axios from 'axios'
 
 import Modal from '../components/Modal';
@@ -19,7 +20,7 @@ function Home() {
     const searchTodos = async(text) =>{
         if(text){
         console.log("searched todos callled");
-            const {data} =  await axios.get(`/api/searchTodos?q=${text}`)
+            const {data} =  await axios.get(`/api/searchTodos/${user.id}?q=${text}`)
                             .catch(err =>{
                                 toast.error("Something went wrong!")
                             })
@@ -31,8 +32,9 @@ function Home() {
     const getTodosFromDb = async()=>{
 
     //checking if context is empty to prevent unnecessary DB calls
+    
         if(!todos || todos.length==0){
-        const {data} =  await axios.get('/api/getTodos')
+        const {data} =  await axios.get(`/api/getTodos/${user.id}`)
                         .catch(err =>{
                             toast.error("Something went wrong!")
                         })
@@ -48,10 +50,13 @@ function Home() {
     
 
     useEffect(()=>{
-        updateUser();
         if(user)
         getTodosFromDb()
     },[searchedTodos, user])
+    useEffect( ()=>{
+       updateUser();
+        
+    },[])
 
     if(!user){
         return(
@@ -61,6 +66,8 @@ function Home() {
             </div>
         )
     }
+
+    
     
     return ( 
         <div className='px-4 md:px-10 lg:px-28 xl:px-32 py-6'>
@@ -82,6 +89,13 @@ function Home() {
                     </label>
                 </div>
                 <div className='flex flex-wrap w-full justify-around '>
+                    {
+                        todos.length==0 && <div className='w-full flex text-center flex-col items-center'>
+                        <p className='text-white text-xl mb-3'>Hello <span className="text-error"> {user.name}</span>👋, you dont have any lists created yet!!!`</p>
+                        <p className='text-white text-md'>Be more productive by deciding and organizing what you want to do.</p>
+                        <img src={EmptyList} className="w-40 h-40 mt-10"/>
+                    </div>
+                    }
                     {
                         searchedTodos.length>0 && searchedTodos.map((todo, index) =>
                                 <Card todo={todo} key={index}/>

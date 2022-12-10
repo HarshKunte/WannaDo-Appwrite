@@ -34,6 +34,7 @@ export function TodosProvider({children}){
     const updateUser = () =>{
         const promise = account.get()
         promise.then((user)=>{
+            console.log(user.$id);
             setUser({name: user.name, id: user.$id, email: user.email})
         }).catch(err =>{
             setUser(null)

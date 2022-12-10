@@ -27,7 +27,7 @@ function ViewTodo() {
       toast.error(error);
     }
       await axios
-        .get(`/api/getTodos`)
+        .get(`/api/getTodos/${user.id}`)
         .then((res) => {
           updateTodos(res.data.todos);
         })

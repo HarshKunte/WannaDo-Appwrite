@@ -3,6 +3,8 @@ const Todo = require('../model/todoModel')
 exports.createTodo = async (req, res) =>{
     try {
         const title = req.body.title;
+        const userId = req.params.userId
+
         // Initially the tasks will be empty
         const tasks = [];
 
@@ -10,7 +12,7 @@ exports.createTodo = async (req, res) =>{
         if(!title){
             throw new Error('Title is required.');
         }
-        const todo = await Todo.create({title})
+        const todo = await Todo.create({title, userId})
         if(!todo){
             return res.status(401).json({
                 success:false,
