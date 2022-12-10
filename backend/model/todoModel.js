@@ -27,6 +27,10 @@ const todoSchema = new mongoose.Schema({
         }
     },{timestamps: true}],
     
+    userId: {
+        type: String,
+        required: true
+    }
     
 },{timestamps:true})
 

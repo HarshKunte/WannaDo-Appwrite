@@ -10,8 +10,9 @@ import axios from 'axios'
 import Modal from '../components/Modal';
 import SearchBar from '../components/SearchBar';
 import toast from 'react-hot-toast';
+import LoginSignup from '../components/LoginSignup';
 function Home() {
-    const {todos, updateTodos} = useContext(TodosContext);
+    const {todos, user, updateUser, updateTodos} = useContext(TodosContext);
     const [searchedTodos, setSearchedTodos] = useState([])
 
 
@@ -47,15 +48,23 @@ function Home() {
     
 
     useEffect(()=>{
-        
+        updateUser();
+        if(user)
         getTodosFromDb()
-    },[searchedTodos])
+    },[searchedTodos, user])
 
+    if(!user){
+        return(
+            <div className='px-4 md:px-10 lg:px-28 xl:px-32 py-6'>
+            <Navbar/>
+            <LoginSignup/>
+            </div>
+        )
+    }
     
-
     return ( 
         <div className='px-4 md:px-10 lg:px-28 xl:px-32 py-6'>
-            <Navbar/>
+            <Navbar />
             <SearchBar searchTodos={searchTodos}/>
             <div className='px-6 py-8 xl:px-16 xl:py-4'>
                 <div className='w-full mb-12'>

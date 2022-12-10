@@ -12,9 +12,8 @@ function ViewTodo() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { todos, updateTodos } = useContext(TodosContext);
+  const { todos,user, updateTodos, updateUser } = useContext(TodosContext);
   const [todo, setTodo] = useState({});
-  console.log(todos);
 
   const getTodo = async () => {
     try {
@@ -42,7 +41,11 @@ function ViewTodo() {
   };
 
   useEffect(() => {
+    updateUser();
+    if(user)
     getTodo();
+    else
+    navigate('/')
   }, []);
 
   

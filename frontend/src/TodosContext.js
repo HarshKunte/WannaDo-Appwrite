@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import account from "./config/appwrite";
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
@@ -8,6 +9,7 @@ const TodosContext = createContext();
 export function TodosProvider({children}){
 
     const [todos, setTodos] = useState([])
+    const [user, setUser] = useState(null)
 
     const createTodo = (todo) =>{
         setTodos((prevState) => [...prevState, todo])
@@ -26,11 +28,19 @@ export function TodosProvider({children}){
                 else
                 return {...todo, relativeDate : dayjs(todo.createddAt).fromNow(), tasks: newTasks}
         })
-        console.log("New todos,", newTodos);
         setTodos(newTodos)
     }
 
-    return <TodosContext.Provider value={{todos, createTodo, updateTodos}}>
+    const updateUser = () =>{
+        const promise = account.get()
+        promise.then((user)=>{
+            setUser({name: user.name, id: user.$id, email: user.email})
+        }).catch(err =>{
+            setUser(null)
+        })
+    }
+
+    return <TodosContext.Provider value={{todos, createTodo, updateTodos, user, updateUser}}>
         {children}
     </TodosContext.Provider>
 }

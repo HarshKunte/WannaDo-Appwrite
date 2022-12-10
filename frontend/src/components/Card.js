@@ -15,7 +15,6 @@ function Card({todo}) {
   const calcTasks = () =>{
     let compTasks = 0;
     let remTasks = 0;
-    console.log(todo.tasks);
       todo.tasks?.map(task => {
           if(task.isCompleted)
            compTasks +=1
@@ -37,23 +36,7 @@ function Card({todo}) {
         <p className="text-sm lg:text-2xl font-bold text-center  text-primary font-mono">
           {todo?.title}
         </p>
-        
-        {/* <div className="overflow-y-hidden">
-        {todo.tasks?.filter((task) => task.isCompleted==false)
-        .map((task, index)=>(
-          <h5 key={index} className="hidden md:flex items-center text-xs xl:text-sm text-accent">
-            {task.title}
-         </h5>
-        ))}
-        {todo.tasks?.filter((task) => task.isCompleted==true)
-        .map((task, index)=>(
-          
-         <h5 key={index} className="hidden md:flex items-center text-xs xl:text-sm text-error">
-         {task.title} <BsCheckAll className="w-5 h-5 ml-1"/> 
-        </h5>
-         
-        ))}
-        </div> */}
+      
         <h5  className="hidden md:flex items-center text-xs xl:text-sm text-accent">
           {remainingTasks} remaining
         </h5>
