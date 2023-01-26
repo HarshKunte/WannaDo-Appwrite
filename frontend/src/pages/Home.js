@@ -52,7 +52,7 @@ function Home() {
     useEffect(()=>{
         if(user)
         getTodosFromDb()
-    },[searchedTodos, user])
+    },[searchedTodos, user, getTodosFromDb])
     useEffect( ()=>{
        updateUser();
     },[updateUser])
