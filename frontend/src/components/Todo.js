@@ -66,7 +66,7 @@ function Todo({todo, setTodo}) {
 
   //Delete todo
   const deleteTodo = async() =>{
-    if(confirm("Are sure you want to delete this list?")){
+    if(window.confirm("Are sure you want to delete this list?")){
     await axios.delete(`/api/deleteTodo/${todo._id}`)
     .then((res) =>{
       if(res.data.success){
