@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import {MdModeEdit} from "react-icons/md"
 import {TiDelete} from 'react-icons/ti';
@@ -49,7 +49,7 @@ function Todo({todo, setTodo}) {
       }
       const updatedTodo = res.data.todo 
       console.log("updated",updatedTodo);
-      const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
+      const newTodos = todos.filter((funtodo)=>funtodo._id!==todo._id)
       console.log(newTodos);
       newTodos.push(updatedTodo)
       console.log(newTodos);
@@ -73,7 +73,7 @@ function Todo({todo, setTodo}) {
         toast.success("Todo deleted!")
       }
       navigate('/')
-      const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)                       
+      const newTodos = todos.filter((funtodo)=>funtodo._id!==todo._id)                       
       updateTodos(newTodos)
 
     })
@@ -97,7 +97,7 @@ function Todo({todo, setTodo}) {
       }
       const updatedTodo = res.data.todo 
       setTodo(updatedTodo)
-      const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
+      const newTodos = todos.filter((funtodo)=>funtodo._id!==todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
       setTaskTitle("")
@@ -117,7 +117,7 @@ function Todo({todo, setTodo}) {
       }
       const updatedTodo = res.data.todo 
       setTodo(updatedTodo)
-      const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
+      const newTodos = todos.filter((funtodo)=>funtodo._id!==todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
 
@@ -137,12 +137,12 @@ function Todo({todo, setTodo}) {
     
     await axios.post(`/api/updateTask/${todo._id}`,{task})
     .then((res) =>{
-      if(res.data.success && task.isCompleted==true){
+      if(res.data.success && task.isCompleted===true){
         toast.success("Well done, you did it!")
       }
       const updatedTodo = res.data.todo
       setTodo(updatedTodo)
-      const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
+      const newTodos = todos.filter((funtodo)=>funtodo._id!==todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
 
@@ -167,7 +167,7 @@ function Todo({todo, setTodo}) {
       }
       const updatedTodo = res.data.todo
       setTodo(updatedTodo)
-      const newTodos = todos.filter((funtodo)=>funtodo._id!=todo._id)
+      const newTodos = todos.filter((funtodo)=>funtodo._id!==todo._id)
       newTodos.push(updatedTodo)                         
       updateTodos(newTodos)
 
@@ -230,11 +230,11 @@ function Todo({todo, setTodo}) {
               onChange={()=>checkUncheckTask(item)}
               className="checkbox checkbox-sm checkbox-error mr-4"
             />
-            <input className={item == nonDisabledIndex ? `bg-base-300 flex-1 pb-1 border-b-[1px] outline-none`:`outline-none bg-base-300 flex-1 pb-1 `}
+            <input className={item === nonDisabledIndex ? `bg-base-300 flex-1 pb-1 border-b-[1px] outline-none`:`outline-none bg-base-300 flex-1 pb-1 `}
               type="text"
-              ref={item == nonDisabledIndex? taskInputReference: undefined}
+              ref={item === nonDisabledIndex? taskInputReference: undefined}
               defaultValue={item?.title}
-              disabled={nonDisabledIndex!=item}
+              disabled={nonDisabledIndex!==item}
               onBlur={()=>editTask(item)}
             />
             <button onClick={()=> focusTaskInput(item)} tabIndex="0" className=""> <MdModeEdit className="text-error w-5 h-5"/></button>
@@ -250,11 +250,11 @@ function Todo({todo, setTodo}) {
               onChange={()=>checkUncheckTask(item)}
               className="checkbox checkbox-sm checkbox-error mr-4"
             />
-            <input className={item == nonDisabledIndex ? `bg-base-300 flex-1 pb-1 border-b-[1px] outline-none`:`outline-none bg-base-300 flex-1 pb-1 line-through`}
+            <input className={item === nonDisabledIndex ? `bg-base-300 flex-1 pb-1 border-b-[1px] outline-none`:`outline-none bg-base-300 flex-1 pb-1 line-through`}
               type="text"
-              ref={item == nonDisabledIndex? taskInputReference: undefined}
+              ref={item === nonDisabledIndex? taskInputReference: undefined}
               defaultValue={item?.title}
-              disabled={nonDisabledIndex!=item}
+              disabled={nonDisabledIndex!==item}
             />
             
             <button tabIndex="0" className=""> <TiDelete onClick={()=>deleteTask(item._id)} className="text-error ml-2 w-6 h-6"/></button>

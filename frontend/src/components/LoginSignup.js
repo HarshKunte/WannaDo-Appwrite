@@ -59,14 +59,14 @@ function LoginSignup() {
     <div className="w-full flex flex-col items-center mt-10">
       <div className="w-full rounded-lg text-accent shadow md:mt-0 sm:max-w-md xl:p-0 bg-base-300">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          {currentAction=="login"?(<h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-primary">
+          {currentAction==="login"?(<h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-primary">
             Sign in to your account
           </h1>):(
             <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-primary">
             Create your account
           </h1>)}
-          <form className="space-y-4 md:space-y-6" onSubmit={currentAction=='login'? login: signUp} >
-            {currentAction=='signup' && <div>
+          <form className="space-y-4 md:space-y-6" onSubmit={currentAction==='login'? login: signUp} >
+            {currentAction==='signup' && <div>
               <label
                 for="name"
                 className="block mb-2 text-sm font-medium "
@@ -121,7 +121,7 @@ function LoginSignup() {
               />
             </div>
             
-            {currentAction=="login"?(<button
+            {currentAction==="login"?(<button
               type="submit"
               className="w-full text-base-100 bg-error focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={login}
             >
@@ -132,17 +132,17 @@ function LoginSignup() {
             >
               Sign Up
             </button>)}
-            {currentAction=="login"?(
+            {currentAction==="login"?(
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               Don’t have an account yet?{" "}
-              <a onClick={()=>setCurrentAction('signup')} className="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500">
+              <span onClick={()=>setCurrentAction('signup')} className="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500">
                 Sign up
-              </a>
+              </span>
             </p>):(<p className="text-sm font-light text-gray-500 dark:text-gray-400">
               Already have an account?{" "}
-              <a onClick={()=>setCurrentAction('login')} className="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500">
+              <span onClick={()=>setCurrentAction('login')} className="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500">
                 Sign in
-              </a>
+              </span>
             </p>)}
           </form>
         </div>

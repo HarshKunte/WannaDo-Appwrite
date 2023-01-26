@@ -15,7 +15,7 @@ function ViewTodo() {
   const { todos,user, updateTodos, updateUser } = useContext(TodosContext);
   const [todo, setTodo] = useState({});
 
-  const getTodo = async () => {
+  async function getTodo() {
     try {
       await axios
         .get(`/api/getTodo/${id}`)
@@ -46,7 +46,7 @@ function ViewTodo() {
     getTodo();
     else
     navigate('/')
-  }, []);
+  });
 
   
   return (
@@ -82,8 +82,8 @@ function ViewTodo() {
           </p>
           <ul className="menu bg-base-100 w-full ">
             {todos?.map((todo, index) => (
-              <li className={todo._id == id ?`bordered rounded-none`:``} key={index} onClick={() => loadTodo(todo)}>
-                <a >{todo.title}</a>
+              <li className={todo._id === id ?`bordered rounded-none`:``} key={index} onClick={() => loadTodo(todo)}>
+                <p >{todo.title}</p>
               </li>
             ))}
           </ul>

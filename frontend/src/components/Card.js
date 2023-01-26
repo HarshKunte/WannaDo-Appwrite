@@ -12,14 +12,14 @@ function Card({todo}) {
       navigate(`/todo/${todoId}`)
   }
 
-  const calcTasks = () =>{
+  function calcTasks(){
     let compTasks = 0;
     let remTasks = 0;
       todo.tasks?.map(task => {
           if(task.isCompleted)
-           compTasks +=1
+           return compTasks +=1
           else
-            remTasks +=1
+            return remTasks +=1
       });
       setCompletedTasks(compTasks)
       setRemainingTasks(remTasks)

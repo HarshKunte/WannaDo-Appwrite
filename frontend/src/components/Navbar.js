@@ -38,14 +38,14 @@ function Navbar({back}) {
             {!back?(
             <>
                 
-                <a className="btn btn-ghost normal-case  text-2xl font-bold">
+                <p className="btn btn-ghost normal-case  text-2xl font-bold">
                 Wanna<span className='text-primary'>DO</span>
-                <span><FaRunning className='pl-1 text-primary'/></span></a>
+                <span><FaRunning className='pl-1 text-primary'/></span></p>
             </>
             ):(
                 <>
                 <label htmlFor='my-drawer-2' className='lg:hidden drawer-button'><GiHamburgerMenu className='w-5 h-5'/></label>
-                <a onClick={goBack} className='cursor-pointer hidden lg:flex items-center normal-case text-base'><BiArrowBack className='mr-2'/> Back</a>
+                <p onClick={goBack} className='cursor-pointer hidden lg:flex items-center normal-case text-base'><BiArrowBack className='mr-2'/> Back</p>
                 </>
               )
             }
@@ -61,7 +61,7 @@ function Navbar({back}) {
           </div>
         </label>
          <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52">
-          <li onClick={logOut}><a>Logout</a></li>
+          <li onClick={logOut}><p>Logout</p></li>
         </ul>
       </div>}
     </div>
