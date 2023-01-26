@@ -46,7 +46,7 @@ function ViewTodo() {
     getTodo();
     else
     navigate('/')
-  });
+  },[]);
 
   
   return (

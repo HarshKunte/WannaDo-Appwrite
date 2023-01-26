@@ -14,7 +14,6 @@ function Modal() {
   const [title, setTitle] = useState("");
   const submitTodo = async(e) =>{
     e.preventDefault();
-    console.log(title);
     await axios.post(`/api/createTodo/${user.id}`,{title})
     .then((res)=>{
       console.log(res);
