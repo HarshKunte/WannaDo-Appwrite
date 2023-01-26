@@ -50,7 +50,7 @@ function Home() {
                         }
             }())
         }
-    },[searchedTodos, user, todos, updateTodos])
+    },[searchedTodos, user, todos])
 
     useEffect( ()=>{
        updateUser();
