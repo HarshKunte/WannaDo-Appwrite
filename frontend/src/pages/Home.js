@@ -29,30 +29,29 @@ function Home() {
         
     }
 
-    async function getTodosFromDb(){
-
-    //checking if context is empty to prevent unnecessary DB calls
-    
-        if(!todos || todos.length===0){
-        const {data} =  await axios.get(`/api/getTodos/${user.id}`)
-                        .catch(err =>{
-                            toast.error("Something went wrong!")
-                        })
-
-        const newTodos = data.todos
-        //update context
-        updateTodos(newTodos)
-            }
-      
-        
-    }
 
     
 
     useEffect(()=>{
-        if(user)
-        getTodosFromDb()
-    },[searchedTodos, user, getTodosFromDb])
+        if(user){
+            (async function getTodosFromDb(){
+
+                //checking if context is empty to prevent unnecessary DB calls
+                
+                    if(!todos || todos.length===0){
+                    const {data} =  await axios.get(`/api/getTodos/${user.id}`)
+                                    .catch(err =>{
+                                        toast.error("Something went wrong!")
+                                    })
+            
+                    const newTodos = data.todos
+                    //update context
+                    updateTodos(newTodos)
+                        }
+            }())
+        }
+    },[searchedTodos, user])
+
     useEffect( ()=>{
        updateUser();
     },[updateUser])
