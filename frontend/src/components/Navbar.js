@@ -28,6 +28,7 @@ function Navbar({back}) {
 
         navigate('/')
     }, function (error) {
+      console.log('error',error)
       toast.error("Logout failed")
     });
   }

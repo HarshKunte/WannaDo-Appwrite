@@ -54,7 +54,7 @@ function Home() {
 
     useEffect( ()=>{
        updateUser();
-    },[updateUser])
+    },[])
 
     if(!user){
         return(
